@@ -1,0 +1,230 @@
+# Plán vývoje - Nový hospodský kvíz
+
+## Cílový stav
+Fungující systém pro hospodské kvízy nasazený na `kviz.michaljanda.com` s:
+- Automatickým řízením průběhu
+- Všemi typy otázek
+- Exportem PPTX/PDF prezentací
+- Jednoduchým admin rozhraním
+
+## Fáze 1: Základní renderovací engine (Týden 1)
+
+### 1.1 Dokončit UniversalQuizRenderer
+- [x] Základní struktura komponenty
+- [ ] Podpora všech typů otázek:
+  - [ ] Jednoduchá otázka (text → červená odpověď)
+  - [ ] AB/ABCDEF otázka (možnosti → zvýrazněná správná)
+  - [ ] Bonusová otázka (postupné odhalování)
+  - [ ] Audio otázka (tlačítko → přehrání → odpověď)
+  - [ ] Video otázka (náhled → fullscreen → odpověď)
+- [ ] Animace podle template konfigurace
+- [ ] Responzivní design
+
+### 1.2 Vytvořit demo stránku
+- [ ] Stránka `/demo` s testovacími otázkami
+- [ ] Interaktivní ovládání (play/pause, navigace)
+- [ ] Zobrazení všech typů otázek v akci
+- [ ] Možnost změny šablony za běhu
+
+### 1.3 Testování a ladění
+- [ ] Test na různých zařízeních (mobile, tablet, desktop)
+- [ ] Test přehrávání audio/video
+- [ ] Ladění výkonu a paměti
+- [ ] Oprava bugů
+
+**Míra dokončení: 30%**
+**Časový odhad: 3-4 dny**
+
+---
+
+## Fáze 2: Automatické řízení průběhu (Týden 2)
+
+### 2.1 Implementovat QuizController
+- [ ] Komponenta pro řízení sekvence slidů
+- [ ] Automatické přechody podle časovače
+- [ ] Podpora oddělovače (spouští answer mode)
+- [ ] Klávesové zkratky (šipky, space, enter)
+- [ ] Progress bar a stavová indikace
+
+### 2.2 Vytvořit SequenceGenerator
+- [ ] Generátor sekvencí z dat kvízu
+- [ ] Podpora různých průběhů odhalování:
+  - Jednoduchá: otázka → odpověď
+  - ABCD: otázka+možnosti → zvýrazněná správná
+  - Bonus: otázka → postupně odpovědi
+  - Audio/Video: otázka → media → odpověď
+- [ ] Konfigurovatelné časy zobrazení
+- [ ] Podpora kol a oddělovačů
+
+### 2.3 Integrace s demo
+- [ ] Přidat automatické přehrávání do demo
+- [ ] Testovat různé sekvence
+- [ ] Ladění časování a přechodů
+
+**Míra dokončení: 10%**
+**Časový odhad: 3-4 dny**
+
+---
+
+## Fáze 3: Export PPTX/PDF (Týden 3)
+
+### 3.1 Implementovat PPTX generátor
+- [ ] Použít knihovnu `pptxgenjs`
+- [ ] Převod TemplateConfig na PPTX styly
+- [ ] Generování slidů z QuestionData
+- [ ] Simulace animací pomocí více slidů:
+  - Bonus: 1 slide = 1 odpověď navíc
+  - ABCD: 2 slid(y) (možnosti → zvýrazněná)
+  - Audio/Video: 2 slid(y) (otázka → odpověď)
+- [ ] Přidání obrázků a media placeholderů
+
+### 3.2 Přidat PDF export (fallback)
+- [ ] Generování PDF z PPTX
+- [ ] Nebo přímý PDF export pomocí Puppeteer
+- [ ] Testovat kvalitu a velikost souborů
+
+### 3.3 Testování exportu
+- [ ] Export demo kvízu
+- [ ] Kontrola formátování a layoutu
+- [ ] Testovat v PowerPointu/LibreOffice
+- [ ] Optimalizovat velikost souborů
+
+**Míra dokončení: 0%**
+**Časový odhad: 4-5 dní**
+
+---
+
+## Fáze 4: Admin rozhraní (Týden 4)
+
+### 4.1 Základní admin rozhraní
+- [ ] Stránka `/admin` s přehledem kvízů
+- [ ] Editor šablon (pozadí, barvy, fonty)
+- [ ] Náhled šablon v reálném čase
+- [ ] Ukládání šablon do databáze
+
+### 4.2 Správa kvízů
+- [ ] Vytváření nových kvízů
+- [ ] Výběr otázek z databáze
+- [ ] Konfigurace sekvence (kola, oddělovače)
+- [ ] Náhled kvízu před generováním
+
+### 4.3 Generování prezentací
+- [ ] Tlačítko "Vygenerovat prezentaci"
+- [ ] Výběr formátu (PPTX/PDF)
+- [ ] Stažení souboru
+- [ ] Historie generování
+
+**Míra dokončení: 0%**
+**Časový odhad: 5-6 dní**
+
+---
+
+## Fáze 5: Backend a databáze (Týden 5)
+
+### 5.1 Nastavit Convex backend
+- [ ] Inicializovat Convex projekt
+- [ ] Vytvořit schéma databáze:
+  - `templates` - konfigurace šablon
+  - `questions` - otázky s typy a odpověďmi
+  - `quizzes` - kvízy s sekvencemi
+  - `exports` - historie generování
+- [ ] Implementovat API funkce
+
+### 5.2 Migrace existujících dat
+- [ ] Převod starých kvízů do nového formátu
+- [ ] Migrace otázek a kategorií
+- [ ] Testovat kompatibilitu
+
+### 5.3 Autentizace a oprávnění
+- [ ] Přihlašování adminů
+- [ ] Role a oprávnění
+- [ ] Audit log
+
+**Míra dokončení: 0%**
+**Časový odhad: 3-4 dny**
+
+---
+
+## Fáze 6: Nasazení na produkci (Týden 6)
+
+### 6.1 Build a optimalizace
+- [ ] Sestavit produkční build (`npm run build`)
+- [ ] Optimalizovat obrázky a assety
+- [ ] Nastavit caching strategie
+- [ ] Testovat výkon
+
+### 6.2 Deployment setup
+- [ ] Nastavit PM2 nebo systemd službu
+- [ ] Konfigurovat na portu 3001
+- [ ] Připravit deployment skripty
+- [ ] Nastavit monitoring a logování
+
+### 6.3 Nasazení na kviz.michaljanda.com
+- [ ] Zastavit starý kvíz (pokud běží)
+- [ ] Nasadit nový kvíz
+- [ ] Otestovat funkčnost
+- [ ] Přesměrovat nginx na nový port
+
+### 6.4 Testování v produkci
+- [ ] Test všech typů otázek
+- [ ] Test exportu PPTX/PDF
+- [ ] Test výkonu a stability
+- [ ] Hotfixy a úpravy
+
+**Míra dokončení: 0%**
+**Časový odhad: 2-3 dny**
+
+---
+
+## Fáze 7: Dokumentace a školení (Týden 7)
+
+### 7.1 Uživatelská dokumentace
+- [ ] Návod pro adminy (jak vytvářet kvízy)
+- [ ] Návod pro moderátory (jak spouštět kvízy)
+- [ ] FAQ a řešení problémů
+
+### 7.2 Technická dokumentace
+- [ ] Architektura systému
+- [ ] API dokumentace
+- [ ] Deployment guide
+- [ ] Troubleshooting
+
+### 7.3 Školení
+- [ ] Ukázka systému adminovi
+- [ ] Nácvik vytváření kvízů
+- [ ] Odpovědi na dotazy
+
+**Míra dokončení: 0%**
+**Časový odhad: 1-2 dny**
+
+---
+
+## Celkový časový odhad
+- **Optimistický**: 6-7 týdnů
+- **Realistický**: 8-9 týdnů  
+- **Pesimistický**: 10-12 týdnů
+
+## Priority
+1. **Minimální funkční produkt** (Fáze 1-3): 3 týdny
+2. **Admin rozhraní** (Fáze 4): +1 týden
+3. **Nasazení na produkci** (Fáze 6): +1 týden
+4. **Dokumentace a vylepšení** (Fáze 7): +1 týden
+
+## Rizika a mitigace
+1. **Časové prodlevy** - pravidelné status meetingy, průběžné demo
+2. **Technické problémy** - proof-of-concept pro každou fázi
+3. **Změny požadavků** - agilní přístup, častá komunikace
+4. **Problémy s kompatibilitou** - testování na různých zařízeních a verzích PowerPointu
+
+## Metriky úspěchu
+- ✅ Všechny typy otázek fungují v prohlížeči
+- ✅ Automatické řízení bez nutnosti klikání moderátora
+- ✅ Export PPTX funguje a otevírá se v PowerPointu
+- ✅ Admin dokáže vytvořit kvíz bez technické pomoci
+- ✅ Systém běží stabilně na kviz.michaljanda.com
+- ✅ Uživatelé (hráči) nemají problémy se zobrazením
+
+---
+
+*Plán vytvořen 6.3.2026*
+*Průběžně aktualizován podle pokroku*
