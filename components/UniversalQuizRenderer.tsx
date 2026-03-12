@@ -28,7 +28,6 @@ interface UniversalQuizRendererProps {
   question: QuestionData
   template: TemplateConfig
   showAnswer?: boolean
-  autoPlay?: boolean
   onNext?: () => void
   onPrev?: () => void
   onAnswerReveal?: (isCorrect: boolean) => void
@@ -38,7 +37,6 @@ export default function UniversalQuizRenderer({
   question,
   template,
   showAnswer = false,
-  autoPlay = false,
   onNext,
   onPrev,
   onAnswerReveal
@@ -56,14 +54,7 @@ export default function UniversalQuizRenderer({
     setIsPlaying(false)
     setCurrentTime(0)
     if (timerRef.current) clearInterval(timerRef.current)
-    
-    if (autoPlay && question.type === "audio" && audioRef.current) {
-      setTimeout(() => {
-        audioRef.current?.play()
-        setIsPlaying(true)
-      }, 500)
-    }
-  }, [question.id, autoPlay, question.type])
+  }, [question.id, question.type])
 
   // Odhalení bonusových odpovědí postupně
   useEffect(() => {

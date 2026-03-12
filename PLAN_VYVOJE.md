@@ -37,29 +37,28 @@ Fungující systém pro hospodské kvízy nasazený na `kviz.michaljanda.com` s:
 
 ---
 
-## Fáze 2: Automatické řízení průběhu (Týden 2)
+## Fáze 2: Manuální řízení průběhu (Týden 2)
 
 ### 2.1 Implementovat QuizController
 - [ ] Komponenta pro řízení sekvence slidů
-- [ ] Automatické přechody podle časovače
+- [ ] Ruční ovládání moderátorem (tlačítka, klávesové zkratky)
 - [ ] Podpora oddělovače (spouští answer mode)
-- [ ] Klávesové zkratky (šipky, space, enter)
-- [ ] Progress bar a stavová indikace
+- [ ] Klávesové zkratky (šipky, space, enter pro moderátora)
+- [ ] Progress bar a stavová indikace pro moderátora
 
 ### 2.2 Vytvořit SequenceGenerator
 - [ ] Generátor sekvencí z dat kvízu
 - [ ] Podpora různých průběhů odhalování:
-  - Jednoduchá: otázka → odpověď
-  - ABCD: otázka+možnosti → zvýrazněná správná
-  - Bonus: otázka → postupně odpovědi
-  - Audio/Video: otázka → media → odpověď
-- [ ] Konfigurovatelné časy zobrazení
+  - Jednoduchá: otázka → odpověď (dvě fáze)
+  - ABCD: otázka+možnosti → zvýrazněná správná (dvě fáze)
+  - Bonus: otázka → postupně odpovědi (fázové odhalení)
+  - Audio/Video: otázka → media → odpověď (tři fáze)
 - [ ] Podpora kol a oddělovačů
 
 ### 2.3 Integrace s demo
-- [ ] Přidat automatické přehrávání do demo
-- [ ] Testovat různé sekvence
-- [ ] Ladění časování a přechodů
+- [ ] Přidat ovládací panel pro moderátora
+- [ ] Testovat manuální přechody mezi fázemi
+- [ ] Ladění uživatelského rozhraní pro moderátora
 
 **Míra dokončení: 10%**
 **Časový odhad: 3-4 dny**

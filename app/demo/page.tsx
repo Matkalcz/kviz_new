@@ -127,9 +127,7 @@ const templatePresets = [
 export default function DemoPage() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [showAnswer, setShowAnswer] = useState(false)
-  const [autoPlay, setAutoPlay] = useState(false)
   const [selectedTemplate, setSelectedTemplate] = useState(templatePresets[0])
-  const [isPlaying, setIsPlaying] = useState(false)
 
   const currentQuestion = demoQuestions[currentQuestionIndex]
   const isFirstQuestion = currentQuestionIndex === 0
@@ -157,21 +155,7 @@ export default function DemoPage() {
     setSelectedTemplate(template)
   }
 
-  const handleAutoPlayToggle = () => {
-    setAutoPlay(!autoPlay)
-    if (!autoPlay) {
-      // Simulace automatického přehrávání
-      setTimeout(() => {
-        setShowAnswer(true)
-        setTimeout(() => {
-          if (!isLastQuestion) {
-            setCurrentQuestionIndex(prev => prev + 1)
-            setShowAnswer(false)
-          }
-        }, 3000)
-      }, 5000)
-    }
-  }
+
 
   const getTypeIcon = (type: QuestionType) => {
     switch (type) {
@@ -195,13 +179,7 @@ export default function DemoPage() {
             </div>
 
             <div className="flex flex-wrap items-center gap-3">
-              <button
-                onClick={handleAutoPlayToggle}
-                className={`flex items-center gap-2 px-4 py-2 rounded-lg ${autoPlay ? 'bg-green-600 text-white' : 'bg-gray-200 text-gray-800'}`}
-              >
-                {autoPlay ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-                {autoPlay ? 'Automatické přehrávání' : 'Spustit automaticky'}
-              </button>
+
 
               <div className="relative group">
                 <button className="flex items-center gap-2 px-4 py-2 bg-gray-200 text-gray-800 rounded-lg">
@@ -325,7 +303,6 @@ export default function DemoPage() {
             showAnimations: selectedTemplate.showAnimations
           }}
           showAnswer={showAnswer}
-          autoPlay={autoPlay && (currentQuestion.type === "audio" || currentQuestion.type === "video")}
           onNext={handleNext}
           onPrev={!isFirstQuestion ? handlePrev : undefined}
           onAnswerReveal={(isCorrect) => {
