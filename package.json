@@ -6,31 +6,28 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "convex:dev": "convex dev",
-    "convex:deploy": "convex deploy",
-    "convex:codegen": "convex codegen"
+    "lint": "next lint"
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.1.6",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/material": "^6.4.2",
     "@types/node": "^22.10.6",
     "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.3",
-    "typescript": "^5.7.3",
-    "tailwindcss": "^3.4.17",
-    "postcss": "^8.5.3",
     "autoprefixer": "^10.4.20",
-    "convex": "^1.15.1",
-    "@convex-dev/auth": "^0.4.1",
-    "convex-generate": "^0.0.13",
+    "better-sqlite3": "^11.7.2",
+    "jspdf": "^2.5.2",
+    "lucide-react": "^0.479.0",
+    "next": "15.1.6",
+    "postcss": "^8.5.3",
     "pptxgenjs": "^3.12.0",
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.0",
-    "lucide-react": "^0.469.0"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.3"
   },
   "devDependencies": {
-    "@types/pptxgenjs": "^3.12.0"
+    "@types/better-sqlite3": "^7.6.12"
   }
 }
