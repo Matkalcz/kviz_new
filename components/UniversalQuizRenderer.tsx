@@ -420,7 +420,7 @@ export default function UniversalQuizRenderer({
                   color: '#ffffff'
                 }}
               >
-                {showAnswer ? "Další otázka" : "Zobrazit odpověď"}
+                Další otázka
               </button>
             )}
           </div>

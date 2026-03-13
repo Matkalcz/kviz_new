@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation"
 import { 
   LayoutDashboard, FileQuestion, Palette, Users, 
   BarChart3, Settings, HelpCircle, Home,
-  ChevronRight, Bell, Search, Menu, X, Download
+  ChevronRight, Bell, Search, Menu, X, Tag
 } from "lucide-react"
 
 interface AdminLayoutProps {
@@ -21,8 +21,8 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     { href: "/admin", icon: LayoutDashboard, label: "Dashboard" },
     { href: "/admin/quizzes", icon: FileQuestion, label: "Kvízy" },
     { href: "/admin/questions", icon: FileQuestion, label: "Otázky" },
+    { href: "/admin/categories", icon: Tag, label: "Kategorie" },
     { href: "/admin/templates", icon: Palette, label: "Šablony" },
-    { href: "/admin/export", icon: Download, label: "Export prezentací" },
     { href: "/admin/users", icon: Users, label: "Uživatelé" },
     { href: "/admin/analytics", icon: BarChart3, label: "Analytika" },
     { href: "/admin/settings", icon: Settings, label: "Nastavení" },

@@ -28,6 +28,19 @@ export function initDatabase() {
     )
   `)
 
+  // Categories table
+  db.exec(`
+    CREATE TABLE IF NOT EXISTS categories (
+      id TEXT PRIMARY KEY,
+      name TEXT NOT NULL UNIQUE,
+      description TEXT,
+      color TEXT DEFAULT '#3b82f6',
+      icon TEXT,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `)
+
   // Questions table
   db.exec(`
     CREATE TABLE IF NOT EXISTS questions (
@@ -38,7 +51,7 @@ export function initDatabase() {
       options TEXT, -- JSON array for ab/abcdef questions
       media_url TEXT, -- For audio/video questions
       points INTEGER DEFAULT 1,
-      category TEXT,
+      category TEXT REFERENCES categories(id),
       difficulty TEXT CHECK(difficulty IN ('easy', 'medium', 'hard')),
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
@@ -107,6 +120,36 @@ export const templates = {
   },
   delete: (id: string) => {
     db.prepare('DELETE FROM templates WHERE id = ?').run(id)
+  }
+}
+
+// Category operations
+export const categories = {
+  getAll: () => db.prepare('SELECT * FROM categories ORDER BY name').all(),
+  getById: (id: string) => db.prepare('SELECT * FROM categories WHERE id = ?').get(id),
+  getByName: (name: string) => db.prepare('SELECT * FROM categories WHERE name = ?').get(name),
+  create: (data: any) => {
+    const id = crypto.randomUUID()
+    db.prepare(`
+      INSERT INTO categories (id, name, description, color, icon)
+      VALUES (?, ?, ?, ?, ?)
+    `).run(id, data.name, data.description, data.color || '#3b82f6', data.icon || '')
+    return id
+  },
+  update: (id: string, data: any) => {
+    db.prepare(`
+      UPDATE categories 
+      SET name = ?, description = ?, color = ?, icon = ?, updated_at = CURRENT_TIMESTAMP
+      WHERE id = ?
+    `).run(data.name, data.description, data.color, data.icon, id)
+  },
+  delete: (id: string) => {
+    // Check if category is used by any questions
+    const used = db.prepare('SELECT COUNT(*) as count FROM questions WHERE category = ?').get(id)
+    if (used.count > 0) {
+      throw new Error('Category cannot be deleted because it is used by questions')
+    }
+    db.prepare('DELETE FROM categories WHERE id = ?').run(id)
   }
 }
 

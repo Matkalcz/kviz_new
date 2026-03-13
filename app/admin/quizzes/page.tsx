@@ -189,6 +189,9 @@ export default function QuizzesPage() {
                   <button className="rounded-lg p-2 text-gray-600 hover:bg-gray-200" title="Statistiky">
                     <BarChart3 className="h-4 w-4" />
                   </button>
+                  <button className="rounded-lg p-2 text-gray-600 hover:bg-gray-200" title="Exportovat prezentaci">
+                    <Download className="h-4 w-4" />
+                  </button>
                   <button className="rounded-lg p-2 text-gray-600 hover:bg-gray-200" title="Duplikovat">
                     <Copy className="h-4 w-4" />
                   </button>
